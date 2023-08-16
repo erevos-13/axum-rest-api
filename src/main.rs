@@ -1,7 +1,9 @@
 mod db;
 mod lid;
 mod my_errors;
+mod responces;
 mod routes;
+mod services;
 mod structs;
 mod validate_json;
 use dotenv::dotenv;

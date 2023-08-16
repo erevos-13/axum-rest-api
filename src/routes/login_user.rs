@@ -5,7 +5,7 @@ use mongodb::{bson::doc, options::FindOptions, Client, Collection};
 use serde::{Deserialize, Serialize};
 use validator::{Validate, ValidationError};
 
-use crate::{lid::AppState, structs::user::User};
+use crate::{lid::AppState, my_errors::MyError, services::fetch_users, structs::user::User};
 
 // use crate::validate_json::ValidatedForm;
 
@@ -39,7 +39,11 @@ pub async fn login_user(
     // ValidatedForm(user): ValidatedForm<RequestUser>,
 ) -> Result<impl IntoResponse, (StatusCode, Json<serde_json::Value>)> {
     dbg!(user);
-    Ok(Json(ResponseUser {
-        token: "token".to_string(),
-    }))
+    match fetch_users(app_state, 0, 1).await.map_err(MyError::from) {
+        Ok(res) => Ok(Json(res)),
+        Err(e) => Err(e.into()),
+    }
+    // Ok(Json(ResponseUser {
+    //     token: "token".to_string(),
+    // }))
 }

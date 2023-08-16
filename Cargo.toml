@@ -8,22 +8,19 @@ edition = "2021"
 [dependencies]
 argon2 = "0.5.1"
 async-trait = "0.1.72"
-axum = { version = "0.6.18", features = ["headers"] }
-axum-extra = { version = "0.7.5", features = ["cookie"] }
+axum = "0.6.19"  # Update to the latest version of Axum
 chrono = { version = "0.4.26", features = ["serde"] }
 dotenv = "0.15.0"
 jsonwebtoken = "8.3.0"
 rand_core = { version = "0.6.4", features = ["std"] }
 serde = { version = "1.0.171", features = ["derive"] }
 serde_json = "1.0.103"
-sqlx = { version = "0.7.1", features = ["runtime-async-std-native-tls", "postgres", "chrono", "uuid"] }
 thiserror = "1.0.44"
-time = "0.3.23"
-tokio = { version = "1.29.1", features = ["full"] }
+tokio = { version = "1.29.1", features = ["full"] }  # Update to a compatible version
 tower-http = { version = "0.4.1", features = ["cors"] }
 uuid = { version = "1.4.0", features = ["v4", "serde"] }
-validator = {version ="0.16.1", features = ["derive"]}
+validator = { version = "0.16.1", features = ["derive"] }
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
-mongodb = { version = "2.1", features = ["bson-chrono-0_4","zstd-compression", "snappy-compression", "zlib-compression"]}
+mongodb = { version = "2.6.0",default-features = false, features = ["bson-chrono-0_4", "zstd-compression", "snappy-compression", "zlib-compression","tokio-sync"] }
+futures = { version = "0.3.17", default-features = false, features = ["async-await"] }  # Update to a compatible version
 
-futures = { version = "0.3.28", default-features = false, features = ["async-await"] }

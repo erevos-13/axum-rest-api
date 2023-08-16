@@ -7,6 +7,8 @@ use axum::http::{
 use tower_http::cors::CorsLayer;
 
 use crate::{db::DB, my_errors::MyError, routes::create_routes};
+use futures::stream::StreamExt;
+use std::convert::Infallible;
 
 #[derive(Clone)]
 pub struct AppState {
